@@ -16,20 +16,25 @@ struct TaskListView: View {
     init (ViewModel: TaskListViewModel) {
         self.ViewModel = ViewModel
     }
-     var body: some View {
+    var body: some View {
         List {
             ForEach(ViewModel.taskList) { item in
-                TaskView(item: item)
-            }.onDelete(perform: { index in
+                NavigationLink(destination: {
+                    TaskDetails(ViewModel: TaskDetailsViewModel(task: item))
+                }) {
+                    TaskView(item: item)
+                }
+                
+            } .onDelete(perform: { index in
                 deleteTask(at: index)
             })
         }.listStyle(PlainListStyle())
-        .navigationTitle("todo List")
-        .navigationBarItems(
-            leading: EditButton(),
-            trailing:
-                NavigationLink("add", destination: AddTaskView(viewModel: AddTaskViewModel(context: viewContext)))
-        )
+            .navigationTitle(taskdListTitle)
+            .navigationBarItems(
+                leading: EditButton(),
+                trailing:
+                    NavigationLink(addTaskButton, destination: AddTaskView(viewModel: AddTaskViewModel(context: viewContext)))
+            )
     }
     
     private func deleteTask(at offsets: IndexSet) {

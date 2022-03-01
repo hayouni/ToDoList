@@ -7,28 +7,25 @@
 
 import SwiftUI
 
+@MainActor
 struct AddTaskView: View {
     @State var textFieldString: String = ""
-    var addItemViewModel: AddTaskViewModel
+    @StateObject  var viewModel = AddTaskViewModel(context: CoreDataManager.shared.persistentContainer.viewContext)
+    @State private var showAlert: Bool = false
+
     @Environment(\.presentationMode) var presentationMode
-    
-    init(viewModel: AddTaskViewModel) {
-        self.addItemViewModel = viewModel
-    }
-    
-    @State var alertTile: String = ""
-    @State var showAlert: Bool = false
+        
     var body: some View {
         ScrollView {
             VStack {
-                TextField("add to do", text: $textFieldString)
+                TextField(addTaskTitle, text: $textFieldString)
                     .cornerRadius(10)
                     .frame(height: 50)
 
                 Button {
                     saveButtonClicked()
                 } label: {
-                    Text("save")
+                    Text(addTaskButton)
                         .font(.headline)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
@@ -39,12 +36,12 @@ struct AddTaskView: View {
             } .padding()
           
          }
-        .navigationTitle("add an item")
-        .alert(isPresented: addItemViewModel.$showAlert, content: addItemViewModel.getAlert)
+        .navigationTitle(addTaskTitle)
+        .alert(isPresented: $viewModel.showAlert, content: viewModel.getAlert)
     }
     private func saveButtonClicked() {
-        if addItemViewModel.isAppropriate(text: textFieldString) {
-            addItemViewModel.addItem(text: textFieldString)
+        if  viewModel.isAppropriate(text: textFieldString) {
+            viewModel.addItem(text: textFieldString)
             presentationMode.wrappedValue.dismiss()
         }
 

@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 
+
 protocol BaseModel {
     static var viewContext: NSManagedObjectContext { get }
     func save() throws
@@ -26,4 +27,18 @@ extension BaseModel  where Self: NSManagedObject {
         Self.viewContext.delete(self)
         try save()
     }
+}
+
+class mock {
+    var item: Task {
+        let item = Task()
+        item.name = "test"
+        item.createdAt = Date()
+        item.isCompleted = false
+        return item
+    }
+}
+
+public extension Optional where Wrapped == String {
+    var orEmpty: String { self ?? "" }
 }

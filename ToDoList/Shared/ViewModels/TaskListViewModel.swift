@@ -11,14 +11,17 @@ import SwiftUI
 
 
 class TaskListViewModel: NSObject, ObservableObject {
-
+    
     @Published var taskList = [TaskViewModel]()
     private let fetch: NSFetchedResultsController<Task>
     private (set) var viewContext: NSManagedObjectContext
-
+    
     init (context: NSManagedObjectContext) {
         self.viewContext = context
-        fetch = NSFetchedResultsController(fetchRequest: Task.getAllItems(), managedObjectContext: viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetch = NSFetchedResultsController(fetchRequest: Task.getAllItems(),
+                                           managedObjectContext: viewContext,
+                                           sectionNameKeyPath: nil,
+                                           cacheName: nil)
         super.init()
         fetch.delegate = self
         performFetch()
@@ -32,7 +35,6 @@ class TaskListViewModel: NSObject, ObservableObject {
             print(error)
         }
     }
-
     
     func deleteItem(taskId: NSManagedObjectID) {
         do {
@@ -40,22 +42,6 @@ class TaskListViewModel: NSObject, ObservableObject {
             try item.delete()
         } catch {
             print(error)
-        }
-    }
-    
-    func addItem (title: String ){
-        let newItem = Task(context: viewContext)
-        newItem.name = title
-        newItem.isCompleted = false
-        newItem.createdAt = Date()
-        
-        do {
-            try viewContext.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
 }

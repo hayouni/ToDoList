@@ -9,15 +9,13 @@ import Foundation
 import CoreData
 
 class CoreDataManager {
-    enum constant {
-        static let persistentContainerName = "ToDoListModel"
-    }
+    
     
     let persistentContainer: NSPersistentContainer
     static let shared = CoreDataManager()
     
     private init() {
-        persistentContainer = NSPersistentContainer(name: constant.persistentContainerName)
+        persistentContainer = NSPersistentContainer(name: persistentContainerName)
         persistentContainer.loadPersistentStores { description, error in
             if let error = error {
                 fatalError("unable to init core data\(error)")

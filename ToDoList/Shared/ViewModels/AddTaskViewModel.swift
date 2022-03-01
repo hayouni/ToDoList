@@ -12,13 +12,13 @@ import SwiftUI
 class AddTaskViewModel: ObservableObject {
     
     var context: NSManagedObjectContext
+    @Published var alertTile: String = ""
+    @Published public var showAlert: Bool = false
     
     init(context: NSManagedObjectContext) {
         self.context = context
     }
-    @State var alertTile: String = ""
-    @State var showAlert: Bool = false
-   
+    
     private func save(title: String ){
         do {
             let item = Task(context: context)
@@ -32,21 +32,20 @@ class AddTaskViewModel: ObservableObject {
         
     }
     
-    
     func addItem(text: String) {
-            save(title: text)
+        save(title: text)
     }
     
-     func isAppropriate(text: String) -> Bool {
+    func isAppropriate(text: String) -> Bool {
         if text.count < 3 {
-            alertTile = "more then 3 caracter"
+            alertTile = alertTitleString
             showAlert.toggle()
             return false
         }
         return true
     }
     
-     func getAlert() -> Alert {
+    func getAlert() -> Alert {
         return Alert(title: Text(alertTile))
     }
 }

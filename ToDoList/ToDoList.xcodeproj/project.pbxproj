@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3523972927CD5FB100401280 /* TaskDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523972827CD5FB100401280 /* TaskDetails.swift */; };
+		3523972A27CD5FB100401280 /* TaskDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523972827CD5FB100401280 /* TaskDetails.swift */; };
+		3523972C27CD5FD500401280 /* TaskDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523972B27CD5FD500401280 /* TaskDetailsViewModel.swift */; };
+		3523972D27CD5FD500401280 /* TaskDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523972B27CD5FD500401280 /* TaskDetailsViewModel.swift */; };
+		3523972F27CD6A8500401280 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523972E27CD6A8500401280 /* Constant.swift */; };
+		3523973027CD6A8500401280 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3523972E27CD6A8500401280 /* Constant.swift */; };
 		35D200DA27CBE2BB005EA124 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D200D927CBE2BB005EA124 /* TaskViewModel.swift */; };
 		35D200DB27CBE2BB005EA124 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D200D927CBE2BB005EA124 /* TaskViewModel.swift */; };
 		35F7A80B27C9721B004BAA25 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F7A80A27C9721B004BAA25 /* Tests_iOS.swift */; };
@@ -31,8 +37,8 @@
 		35F7A84927CA9F0B004BAA25 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F7A84727CA9F0B004BAA25 /* CoreDataManager.swift */; };
 		35F7A84B27CAC2A1004BAA25 /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F7A84A27CAC2A1004BAA25 /* AddTaskViewModel.swift */; };
 		35F7A84C27CAC2A1004BAA25 /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F7A84A27CAC2A1004BAA25 /* AddTaskViewModel.swift */; };
-		35F7A84E27CAC452004BAA25 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F7A84D27CAC452004BAA25 /* BaseModel.swift */; };
-		35F7A84F27CAC452004BAA25 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F7A84D27CAC452004BAA25 /* BaseModel.swift */; };
+		35F7A84E27CAC452004BAA25 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F7A84D27CAC452004BAA25 /* Utility.swift */; };
+		35F7A84F27CAC452004BAA25 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F7A84D27CAC452004BAA25 /* Utility.swift */; };
 		35F7A85627CACEDE004BAA25 /* ToDoListModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 35F7A85427CACEDE004BAA25 /* ToDoListModel.xcdatamodeld */; };
 		35F7A85727CACEDE004BAA25 /* ToDoListModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 35F7A85427CACEDE004BAA25 /* ToDoListModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
@@ -55,6 +61,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3523972827CD5FB100401280 /* TaskDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetails.swift; sourceTree = "<group>"; };
+		3523972B27CD5FD500401280 /* TaskDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsViewModel.swift; sourceTree = "<group>"; };
+		3523972E27CD6A8500401280 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		35D200D927CBE2BB005EA124 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		35F7A7F127C97217004BAA25 /* ToDoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListApp.swift; sourceTree = "<group>"; };
 		35F7A7F427C9721B004BAA25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,7 +83,7 @@
 		35F7A84427CA8636004BAA25 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		35F7A84727CA9F0B004BAA25 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		35F7A84A27CAC2A1004BAA25 /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
-		35F7A84D27CAC452004BAA25 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		35F7A84D27CAC452004BAA25 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		35F7A85527CACEDE004BAA25 /* ToDoListModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToDoListModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,7 +130,8 @@
 		35D200DC27CBE337005EA124 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				35F7A84D27CAC452004BAA25 /* BaseModel.swift */,
+				35F7A84D27CAC452004BAA25 /* Utility.swift */,
+				3523972E27CD6A8500401280 /* Constant.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -203,6 +213,7 @@
 				35F7A83627C97A53004BAA25 /* TaskView.swift */,
 				35F7A83927C97D87004BAA25 /* AddTaskView.swift */,
 				35F7A83227C97818004BAA25 /* TaskListView.swift */,
+				3523972827CD5FB100401280 /* TaskDetails.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -221,6 +232,7 @@
 				35F7A84127CA706D004BAA25 /* TaskListViewModel.swift */,
 				35F7A84A27CAC2A1004BAA25 /* AddTaskViewModel.swift */,
 				35D200D927CBE2BB005EA124 /* TaskViewModel.swift */,
+				3523972B27CD5FD500401280 /* TaskDetailsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -385,15 +397,18 @@
 			files = (
 				35F7A83A27C97D87004BAA25 /* AddTaskView.swift in Sources */,
 				35F7A84B27CAC2A1004BAA25 /* AddTaskViewModel.swift in Sources */,
-				35F7A84E27CAC452004BAA25 /* BaseModel.swift in Sources */,
+				35F7A84E27CAC452004BAA25 /* Utility.swift in Sources */,
 				35F7A83327C97819004BAA25 /* TaskListView.swift in Sources */,
 				35F7A84227CA706D004BAA25 /* TaskListViewModel.swift in Sources */,
+				3523972927CD5FB100401280 /* TaskDetails.swift in Sources */,
 				35F7A81C27C9721B004BAA25 /* ToDoListApp.swift in Sources */,
+				3523972F27CD6A8500401280 /* Constant.swift in Sources */,
 				35F7A84527CA8636004BAA25 /* Task.swift in Sources */,
 				35D200DA27CBE2BB005EA124 /* TaskViewModel.swift in Sources */,
 				35F7A83727C97A53004BAA25 /* TaskView.swift in Sources */,
 				35F7A84827CA9F0B004BAA25 /* CoreDataManager.swift in Sources */,
 				35F7A85627CACEDE004BAA25 /* ToDoListModel.xcdatamodeld in Sources */,
+				3523972C27CD5FD500401280 /* TaskDetailsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,15 +418,18 @@
 			files = (
 				35F7A83B27C97D87004BAA25 /* AddTaskView.swift in Sources */,
 				35F7A84C27CAC2A1004BAA25 /* AddTaskViewModel.swift in Sources */,
-				35F7A84F27CAC452004BAA25 /* BaseModel.swift in Sources */,
+				35F7A84F27CAC452004BAA25 /* Utility.swift in Sources */,
 				35F7A83427C97819004BAA25 /* TaskListView.swift in Sources */,
 				35F7A84327CA706D004BAA25 /* TaskListViewModel.swift in Sources */,
+				3523972A27CD5FB100401280 /* TaskDetails.swift in Sources */,
 				35F7A81D27C9721B004BAA25 /* ToDoListApp.swift in Sources */,
+				3523973027CD6A8500401280 /* Constant.swift in Sources */,
 				35F7A84627CA8636004BAA25 /* Task.swift in Sources */,
 				35D200DB27CBE2BB005EA124 /* TaskViewModel.swift in Sources */,
 				35F7A83827C97A53004BAA25 /* TaskView.swift in Sources */,
 				35F7A84927CA9F0B004BAA25 /* CoreDataManager.swift in Sources */,
 				35F7A85727CACEDE004BAA25 /* ToDoListModel.xcdatamodeld in Sources */,
+				3523972D27CD5FD500401280 /* TaskDetailsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

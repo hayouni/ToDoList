@@ -32,13 +32,8 @@ struct ListRowView_Previews: PreviewProvider {
 
     static var previews: some View {
         let viewContext = CoreDataManager.shared.persistentContainer.viewContext
-        let item = Task().createItem(name: "test", isCompleted: false, createdAt: Date())
         VStack {
             TaskListView(ViewModel: TaskListViewModel(context: viewContext))
         }
     }
-}
-
-public extension Optional where Wrapped == String {
-    var orEmpty: String { self ?? "" }
 }

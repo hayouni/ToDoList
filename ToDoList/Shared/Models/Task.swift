@@ -24,15 +24,8 @@ extension Task: BaseModel  {
         request.sortDescriptors = [sort]
         return request
     }
-    
-//    func updateItem() -> Task {
-//        var item = Task(name: name, isCompleted: !isCompleted, createdAt: createdAt)
-//        item.name = name
-//        item.isCompleted = !isCompleted
-//        item.createdAt = createdAt
-//        return item
-//    }
 }
+
 extension Task  {
     func createItem (name: String?, isCompleted: Bool, createdAt: Date?) -> Task {
         var item = Task()

@@ -9,11 +9,11 @@ import Foundation
 import CoreData
 
 class TaskViewModel: Identifiable {
- 
+    
     
     private var item: Task
     let viewContext = CoreDataManager.shared.persistentContainer.viewContext
-
+    
     init(item: Task) {
         self.item = item
     }
@@ -38,7 +38,7 @@ class TaskViewModel: Identifiable {
     var createdAt: Date {
         item.createdAt ?? Date()
     }
-
+    
     func updateItem(taskId: NSManagedObjectID, isCompleted: Bool) {
         do {
             guard let item = try viewContext.existingObject(with: taskId)  as? Task else { return }
