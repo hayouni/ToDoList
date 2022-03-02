@@ -8,13 +8,16 @@
 import SwiftUI
 
 @MainActor
-struct AddTaskView: View {
-    @State var textFieldString: String = ""
-    @StateObject  var viewModel = AddTaskViewModel(context: CoreDataManager.shared.persistentContainer.viewContext)
-    @State private var showAlert: Bool = false
-
+struct AddTaskView<Model>: View where Model: AddTaskViewModelProtocol {
+    
     @Environment(\.presentationMode) var presentationMode
-        
+    @ObservedObject private var viewModel: Model
+    @State var textFieldString: String = ""
+    
+    init(viewModel: Model) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -39,22 +42,20 @@ struct AddTaskView: View {
         .navigationTitle(addTaskTitle)
         .alert(isPresented: $viewModel.showAlert, content: viewModel.getAlert)
     }
+    
     private func saveButtonClicked() {
         if  viewModel.isAppropriate(text: textFieldString) {
             viewModel.addItem(text: textFieldString)
             presentationMode.wrappedValue.dismiss()
         }
-
     }
-  
 }
 
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewContext = CoreDataManager.shared.persistentContainer.viewContext
 
         NavigationView {
-            AddTaskView(viewModel: AddTaskViewModel(context: viewContext))
+            AddTaskView(viewModel: AddTaskViewModelMock())
         }
     }
 }

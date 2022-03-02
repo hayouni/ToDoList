@@ -13,6 +13,17 @@ class Task: NSManagedObject, Identifiable {
     @NSManaged var name: String?
     @NSManaged public var isCompleted: Bool
     @NSManaged public var createdAt: Date?
+    
+    class func newInstance(name: String, isCompleted:Bool, createdAt:Date,
+                           context: NSManagedObjectContext) -> Task {
+        let item = NSEntityDescription.insertNewObject(forEntityName: "Task",
+                                                       into: context) as! Task
+        item.name = name
+        item.isCompleted = isCompleted
+        item.createdAt = createdAt
+        return item
+    }
+    
 }
 
 
@@ -26,12 +37,5 @@ extension Task: BaseModel  {
     }
 }
 
-extension Task  {
-    func createItem (name: String?, isCompleted: Bool, createdAt: Date?) -> Task {
-        var item = Task()
-        item.name = name
-        item.isCompleted = isCompleted
-        item.createdAt = createdAt
-        return item
-    }
-}
+
+

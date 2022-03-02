@@ -8,14 +8,15 @@
 import SwiftUI
 import CoreData
 
-struct TaskListView: View {
+struct TaskListView<Model>: View where Model: TaskListViewModelProtocol {
   
-    var ViewModel: TaskListViewModel
-    @Environment(\.managedObjectContext) var viewContext
-    
-    init (ViewModel: TaskListViewModel) {
+    @ObservedObject private var ViewModel: Model
+    var coreDataManager: CoreDataManager = CoreDataManager.shared
+
+    init (ViewModel: Model) {
         self.ViewModel = ViewModel
     }
+    
     var body: some View {
         List {
             ForEach(ViewModel.taskList) { item in
@@ -33,7 +34,8 @@ struct TaskListView: View {
             .navigationBarItems(
                 leading: EditButton(),
                 trailing:
-                    NavigationLink(addTaskButton, destination: AddTaskView(viewModel: AddTaskViewModel(context: viewContext)))
+                    NavigationLink(addTaskButton,
+                                   destination: AddTaskView(viewModel: AddTaskViewModel(coreDataManager: coreDataManager)))
             )
     }
     
@@ -43,16 +45,14 @@ struct TaskListView: View {
             ViewModel.deleteItem(taskId: task.id)
         }
     }
-  
 }
 
 struct ListView_Previews: PreviewProvider {
 
     static var previews: some View {
-        let viewContext = CoreDataManager.shared.persistentContainer.viewContext
-
+        let coreDataManager = CoreDataManager.shared
         NavigationView {
-            TaskListView(ViewModel: TaskListViewModel(context: viewContext))
+            TaskListView(ViewModel: TaskListViewModel(coreDataManager: coreDataManager))
         }
     }
 }

@@ -8,8 +8,15 @@
 import Foundation
 import SwiftUI
 
-class TaskDetailsViewModel: ObservableObject {
-    
+protocol TaskDetailsViewModelProtocol {
+    var name: String { get }
+    var createdAt: Date { get }
+    var header: String { get }
+    var headerColor: Color { get }
+}
+
+class TaskDetailsViewModel: ObservableObject, TaskDetailsViewModelProtocol {
+
     private var task: TaskViewModel
     
     init(task: TaskViewModel) {
@@ -32,5 +39,3 @@ class TaskDetailsViewModel: ObservableObject {
     }
     
 }
-
-

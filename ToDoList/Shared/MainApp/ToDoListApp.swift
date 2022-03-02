@@ -11,12 +11,12 @@ import SwiftUI
 struct ToDoListApp: App {
 
     let context = CoreDataManager.shared.persistentContainer.viewContext
-    @StateObject  var listViewModel = TaskListViewModel(context: CoreDataManager.shared.persistentContainer.viewContext)
+    @StateObject  var listViewModel = TaskListViewModel(coreDataManager: CoreDataManager.shared)
     
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                TaskListView(ViewModel: TaskListViewModel(context: context))
+                TaskListView(ViewModel: TaskListViewModel(coreDataManager: CoreDataManager.shared))
             } .environment(\.managedObjectContext, context)
         }
     }

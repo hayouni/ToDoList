@@ -8,8 +8,13 @@
 import Foundation
 import CoreData
 
-class TaskViewModel: Identifiable {
-    
+protocol TaskViewModelProtocol: Identifiable, ObservableObject {
+    var name: String { get }
+    var isCompleted: Bool { get set }
+    var createdAt: Date { get }
+}
+
+class TaskViewModel: Identifiable, TaskViewModelProtocol  {
     
     private var item: Task
     let viewContext = CoreDataManager.shared.persistentContainer.viewContext

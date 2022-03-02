@@ -8,9 +8,9 @@
 import SwiftUI
 import CoreData
 
-struct TaskView: View {
+struct TaskView<Model>: View where Model: TaskViewModelProtocol {
     
-    @State var item: TaskViewModel
+    @ObservedObject var item: Model
 
     var body: some View {
         HStack {
@@ -20,20 +20,18 @@ struct TaskView: View {
             Spacer()
             VStack {
                 Toggle  (isOn: $item.isCompleted) {
-                
                 }
             }
         }
     }
 }
 
-
 struct ListRowView_Previews: PreviewProvider {
 
     static var previews: some View {
-        let viewContext = CoreDataManager.shared.persistentContainer.viewContext
         VStack {
-            TaskListView(ViewModel: TaskListViewModel(context: viewContext))
+            TaskView(item: TaskViewModelMock(isCompleted: true))
+            TaskView(item: TaskViewModelMock(isCompleted: false))
         }
     }
 }

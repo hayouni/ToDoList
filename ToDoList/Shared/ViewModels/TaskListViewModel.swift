@@ -9,40 +9,33 @@ import Foundation
 import CoreData
 import SwiftUI
 
+protocol TaskListViewModelProtocol: ObservableObject  {
+    var taskList: [TaskViewModel] { get set }
+    func performFetch()
+    func deleteItem(taskId: NSManagedObjectID)
+}
 
-class TaskListViewModel: NSObject, ObservableObject {
+class TaskListViewModel: NSObject, ObservableObject, TaskListViewModelProtocol {
     
     @Published var taskList = [TaskViewModel]()
-    private let fetch: NSFetchedResultsController<Task>
-    private (set) var viewContext: NSManagedObjectContext
-    
-    init (context: NSManagedObjectContext) {
-        self.viewContext = context
-        fetch = NSFetchedResultsController(fetchRequest: Task.getAllItems(),
-                                           managedObjectContext: viewContext,
-                                           sectionNameKeyPath: nil,
-                                           cacheName: nil)
+    private var fetch: NSFetchedResultsController<Task>
+    var coreDataManager: CoreDataManager
+    init (coreDataManager: CoreDataManager) {
+        self.coreDataManager = coreDataManager
+        fetch = coreDataManager.fetch
         super.init()
-        fetch.delegate = self
         performFetch()
+        fetch.delegate = self
     }
     
     func performFetch() {
-        do { try fetch.performFetch()
-            guard let tasks = fetch.fetchedObjects else { return }
-            self.taskList = tasks.map(TaskViewModel.init)
-        } catch {
-            print(error)
+        CoreDataManager.shared.performFetch { items in
+            self.taskList = items
         }
+
     }
-    
     func deleteItem(taskId: NSManagedObjectID) {
-        do {
-            guard let item = try viewContext.existingObject(with: taskId)  as? Task else { return }
-            try item.delete()
-        } catch {
-            print(error)
-        }
+        CoreDataManager.shared.deleteItem(taskId: taskId)
     }
 }
 

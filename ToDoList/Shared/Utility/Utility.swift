@@ -20,22 +20,14 @@ extension BaseModel  where Self: NSManagedObject {
     static var viewContext: NSManagedObjectContext {
         CoreDataManager.shared.persistentContainer.viewContext
      }
+    
     func save() throws {
         try Self.viewContext.save()
     }
+    
     func delete() throws {
         Self.viewContext.delete(self)
         try save()
-    }
-}
-
-class mock {
-    var item: Task {
-        let item = Task()
-        item.name = "test"
-        item.createdAt = Date()
-        item.isCompleted = false
-        return item
     }
 }
 

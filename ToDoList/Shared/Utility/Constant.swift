@@ -13,7 +13,6 @@ let completedTaskHeaderTitle: String = "Bravo, vous avez terminé cette tâche"
 let nonCompletedTaskHeaderTitle: String = "Vous n'avez pas terminé cette tâche"
 let addTaskTitle: String = "Ajouter une tâche"
 let addTaskButton: String = "Ajouter"
-
 let taskdListTitle: String = "Tâches"
 let taskDetailTitle: String = "Tâche"
 let taskDetailCreatedAt: String = "Créé le"

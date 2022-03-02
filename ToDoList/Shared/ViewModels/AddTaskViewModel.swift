@@ -9,31 +9,25 @@ import Foundation
 import CoreData
 import SwiftUI
 
-class AddTaskViewModel: ObservableObject {
+protocol AddTaskViewModelProtocol: ObservableObject {
+    func addItem(text: String)
+    func isAppropriate(text: String) -> Bool
+    func getAlert() -> Alert
+    var showAlert: Bool {get set}
+}
+
+class AddTaskViewModel: ObservableObject, AddTaskViewModelProtocol {
     
-    var context: NSManagedObjectContext
+     var coreDataManager: CoreDataManager
     @Published var alertTile: String = ""
     @Published public var showAlert: Bool = false
     
-    init(context: NSManagedObjectContext) {
-        self.context = context
+    init(coreDataManager: CoreDataManager) {
+        self.coreDataManager = coreDataManager
     }
-    
-    private func save(title: String ){
-        do {
-            let item = Task(context: context)
-            item.name = title
-            item.isCompleted = false
-            item.createdAt = Date()
-            try item.save()
-        } catch {
-            print("error")
-        }
-        
-    }
-    
+
     func addItem(text: String) {
-        save(title: text)
+        coreDataManager.addItem(title: text)
     }
     
     func isAppropriate(text: String) -> Bool {
@@ -49,5 +43,3 @@ class AddTaskViewModel: ObservableObject {
         return Alert(title: Text(alertTile))
     }
 }
-
-

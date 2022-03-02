@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TaskDetails: View {
     
-    var ViewModel: TaskDetailsViewModel
+    var ViewModel: TaskDetailsViewModelProtocol
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -27,15 +27,13 @@ struct TaskDetails: View {
             Spacer()
         } .navigationTitle(taskDetailNavigationTitle)
             .font(.subheadline)
-            
 
     }
 }
 
 struct TaskDetails_Previews: PreviewProvider {
-    static var task : mock = mock()
-    static var model = TaskViewModel(item: task.item)
+    
     static var previews: some View {
-        TaskDetails(ViewModel: TaskDetailsViewModel(task: model))
+        TaskDetails(ViewModel:TaskDetailsViewModelMock())
     }
 }
