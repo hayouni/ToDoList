@@ -10,23 +10,22 @@ import Foundation
 
 class TaskViewModelMock: TaskViewModelProtocol {
     
-
-    private var item: Task?
+    private var task: Task?
     
     init(isCompleted: Bool) {
-        item = Task.newInstance(name: "test", isCompleted: isCompleted, createdAt: Date(), context: CoreDataManager.shared.persistentContainer.viewContext)
+        task = Task.newInstance(name: "TaskViewModelMock", isCompleted: isCompleted, createdAt: Date(), context: CoreDataManager.shared.persistentContainer.viewContext)
     }
-
+    
     var name: String {
-        item?.name ?? ""
+        task?.name ?? ""
     }
     
     var isCompleted: Bool {
         get {
-            item?.isCompleted ?? false
+            task?.isCompleted ?? false
         }
         set {
-            item?.isCompleted = newValue
+            task?.isCompleted = newValue
         }
     }
     

@@ -10,7 +10,6 @@ import CoreData
 
 class CoreDataManager {
     
-    
     let persistentContainer: NSPersistentContainer
     static let shared = CoreDataManager()
     let fetch: NSFetchedResultsController<Task>
@@ -29,7 +28,7 @@ class CoreDataManager {
                                            sectionNameKeyPath: nil,
                                            cacheName: nil)
     }
- 
+    
     func performFetch(_ completion: @escaping ([TaskViewModel]) -> Void) {
         do { try fetch.performFetch()
             guard let tasks = fetch.fetchedObjects else { return }
@@ -39,22 +38,22 @@ class CoreDataManager {
         }
     }
     
-    func deleteItem(taskId: NSManagedObjectID) {
+    func deleteTask(taskId: NSManagedObjectID) {
         do {
-            guard let item = try viewContext.existingObject(with: taskId)  as? Task else { return }
-            try item.delete()
+            guard let task = try viewContext.existingObject(with: taskId)  as? Task else { return }
+            try task.delete()
         } catch {
             print(error)
         }
     }
     
-    func addItem(title: String) {
+    func addTask(title: String) {
         do {
-            let item = Task(context: viewContext)
-            item.name = title
-            item.isCompleted = false
-            item.createdAt = Date()
-            try item.save()
+            let task = Task(context: viewContext)
+            task.name = title
+            task.isCompleted = false
+            task.createdAt = Date()
+            try task.save()
         } catch {
             print("error")
         }

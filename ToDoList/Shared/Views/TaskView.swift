@@ -10,16 +10,16 @@ import CoreData
 
 struct TaskView<Model>: View where Model: TaskViewModelProtocol {
     
-    @ObservedObject var item: Model
+    @ObservedObject var task: Model
 
     var body: some View {
         HStack {
-            Image(systemName: item.isCompleted ? "checkmark.circle" : "circle")
-                .foregroundColor(item.isCompleted ? .green : .red)
-            Text(item.name)
+            Image(systemName: task.isCompleted ? "checkmark.circle" : "circle")
+                .foregroundColor(task.isCompleted ? .green : .red)
+            Text(task.name)
             Spacer()
             VStack {
-                Toggle  (isOn: $item.isCompleted) {
+                Toggle  (isOn: $task.isCompleted) {
                 }
             }
         }
@@ -30,8 +30,8 @@ struct ListRowView_Previews: PreviewProvider {
 
     static var previews: some View {
         VStack {
-            TaskView(item: TaskViewModelMock(isCompleted: true))
-            TaskView(item: TaskViewModelMock(isCompleted: false))
+            TaskView(task: TaskViewModelMock(isCompleted: true))
+            TaskView(task: TaskViewModelMock(isCompleted: false))
         }
     }
 }

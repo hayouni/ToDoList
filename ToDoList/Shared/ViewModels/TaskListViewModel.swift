@@ -12,7 +12,7 @@ import SwiftUI
 protocol TaskListViewModelProtocol: ObservableObject  {
     var taskList: [TaskViewModel] { get set }
     func performFetch()
-    func deleteItem(taskId: NSManagedObjectID)
+    func deleteTask(taskId: NSManagedObjectID)
 }
 
 class TaskListViewModel: NSObject, ObservableObject, TaskListViewModelProtocol {
@@ -29,19 +29,19 @@ class TaskListViewModel: NSObject, ObservableObject, TaskListViewModelProtocol {
     }
     
     func performFetch() {
-        CoreDataManager.shared.performFetch { items in
-            self.taskList = items
+        CoreDataManager.shared.performFetch { tasks in
+            self.taskList = tasks
         }
 
     }
-    func deleteItem(taskId: NSManagedObjectID) {
-        CoreDataManager.shared.deleteItem(taskId: taskId)
+    func deleteTask(taskId: NSManagedObjectID) {
+        CoreDataManager.shared.deleteTask(taskId: taskId)
     }
 }
 
 extension TaskListViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        guard let items = controller.fetchedObjects as? [Task] else { return }
-        self.taskList = items.map(TaskViewModel.init)
+        guard let tasks = controller.fetchedObjects as? [Task] else { return }
+        self.taskList = tasks.map(TaskViewModel.init)
     }
 }

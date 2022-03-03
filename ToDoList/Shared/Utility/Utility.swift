@@ -13,13 +13,13 @@ protocol BaseModel {
     static var viewContext: NSManagedObjectContext { get }
     func save() throws
     func delete() throws
-
+    
 }
 
 extension BaseModel  where Self: NSManagedObject {
     static var viewContext: NSManagedObjectContext {
         CoreDataManager.shared.persistentContainer.viewContext
-     }
+    }
     
     func save() throws {
         try Self.viewContext.save()
@@ -33,4 +33,22 @@ extension BaseModel  where Self: NSManagedObject {
 
 public extension Optional where Wrapped == String {
     var orEmpty: String { self ?? "" }
+}
+
+extension Date {
+    
+    var year: Int {
+        let calendar = Calendar.current
+        return calendar.component(.year, from: self)
+    }
+    
+    var day: Int {
+        let calendar = Calendar.current
+        return calendar.component(.day, from: self)
+    }
+    
+    var month: Int {
+        let calendar = Calendar.current
+        return calendar.component(.month, from: self)
+    }
 }

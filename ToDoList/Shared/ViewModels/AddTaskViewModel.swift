@@ -1,5 +1,5 @@
 //
-//  AddItemViewModel.swift
+//  AddTaskViewModel.swift
 //  ToDoList
 //
 //  Created by Saiefeddine HAYOUNI on 26/02/2022.
@@ -10,7 +10,7 @@ import CoreData
 import SwiftUI
 
 protocol AddTaskViewModelProtocol: ObservableObject {
-    func addItem(text: String)
+    func addTask(title: String)
     func isAppropriate(text: String) -> Bool
     func getAlert() -> Alert
     var showAlert: Bool {get set}
@@ -18,16 +18,16 @@ protocol AddTaskViewModelProtocol: ObservableObject {
 
 class AddTaskViewModel: ObservableObject, AddTaskViewModelProtocol {
     
-     var coreDataManager: CoreDataManager
+    var coreDataManager: CoreDataManager
     @Published var alertTile: String = ""
     @Published public var showAlert: Bool = false
     
     init(coreDataManager: CoreDataManager) {
         self.coreDataManager = coreDataManager
     }
-
-    func addItem(text: String) {
-        coreDataManager.addItem(title: text)
+    
+    func addTask(title: String) {
+        coreDataManager.addTask(title: title)
     }
     
     func isAppropriate(text: String) -> Bool {

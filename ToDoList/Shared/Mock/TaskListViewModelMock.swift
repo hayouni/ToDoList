@@ -12,5 +12,5 @@ class TaskListViewModelMock: TaskListViewModelProtocol {
     
     var taskList: [TaskViewModel] = []
     func performFetch() {}
-    func deleteItem(taskId: NSManagedObjectID) {}
+    func deleteTask(taskId: NSManagedObjectID) {}
 }

@@ -16,39 +16,39 @@ protocol TaskViewModelProtocol: Identifiable, ObservableObject {
 
 class TaskViewModel: Identifiable, TaskViewModelProtocol  {
     
-    private var item: Task
+    private var task: Task
     let viewContext = CoreDataManager.shared.persistentContainer.viewContext
     
-    init(item: Task) {
-        self.item = item
+    init(task: Task) {
+        self.task = task
     }
     
     var id: NSManagedObjectID {
-        item.objectID
+        task.objectID
     }
     
     var name: String {
-        item.name.orEmpty
+        task.name.orEmpty
     }
     
     var isCompleted: Bool {
         get {
-            item.isCompleted
+            task.isCompleted
         }
         set {
-            updateItem(taskId: id, isCompleted: newValue)
+            updateTask(taskId: id, isCompleted: newValue)
         }
     }
     
     var createdAt: Date {
-        item.createdAt ?? Date()
+        task.createdAt ?? Date()
     }
     
-    func updateItem(taskId: NSManagedObjectID, isCompleted: Bool) {
+    func updateTask(taskId: NSManagedObjectID, isCompleted: Bool) {
         do {
-            guard let item = try viewContext.existingObject(with: taskId)  as? Task else { return }
-            item.isCompleted = isCompleted
-            try item.save()
+            guard let task = try viewContext.existingObject(with: taskId)  as? Task else { return }
+            task.isCompleted = isCompleted
+            try task.save()
         } catch {
             print(error)
         }

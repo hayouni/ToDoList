@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct ToDoListApp: App {
-
+    
     let context = CoreDataManager.shared.persistentContainer.viewContext
     @StateObject  var listViewModel = TaskListViewModel(coreDataManager: CoreDataManager.shared)
     

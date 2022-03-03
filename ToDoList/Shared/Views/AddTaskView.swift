@@ -45,7 +45,7 @@ struct AddTaskView<Model>: View where Model: AddTaskViewModelProtocol {
     
     private func saveButtonClicked() {
         if  viewModel.isAppropriate(text: textFieldString) {
-            viewModel.addItem(text: textFieldString)
+            viewModel.addTask(title: textFieldString)
             presentationMode.wrappedValue.dismiss()
         }
     }

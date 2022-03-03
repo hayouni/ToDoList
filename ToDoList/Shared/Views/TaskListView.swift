@@ -19,11 +19,11 @@ struct TaskListView<Model>: View where Model: TaskListViewModelProtocol {
     
     var body: some View {
         List {
-            ForEach(ViewModel.taskList) { item in
+            ForEach(ViewModel.taskList) { task in
                 NavigationLink(destination: {
-                    TaskDetails(ViewModel: TaskDetailsViewModel(task: item))
+                    TaskDetails(ViewModel: TaskDetailsViewModel(task: task))
                 }) {
-                    TaskView(item: item)
+                    TaskView(task: task)
                 }
                 
             } .onDelete(perform: { index in
@@ -42,7 +42,7 @@ struct TaskListView<Model>: View where Model: TaskListViewModelProtocol {
     private func deleteTask(at offsets: IndexSet) {
         offsets.forEach { Index in
             let task = ViewModel.taskList[Index]
-            ViewModel.deleteItem(taskId: task.id)
+            ViewModel.deleteTask(taskId: task.id)
         }
     }
 }

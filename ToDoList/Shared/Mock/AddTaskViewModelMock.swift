@@ -12,7 +12,7 @@ class AddTaskViewModelMock: AddTaskViewModelProtocol {
     @Published public var showAlert: Bool = false
     @Published var alertTile: String = ""
 
-    func addItem(text: String) {}
+    func addTask(title: String) {}
     
     func isAppropriate(text: String) -> Bool {
         if text.count < 3 {
