@@ -17,7 +17,8 @@ struct ToDoListApp: App {
         WindowGroup {
             NavigationView {
                 TaskListView(ViewModel: TaskListViewModel(coreDataManager: CoreDataManager.shared))
-            } .environment(\.managedObjectContext, context)
+            }.navigationViewStyle(.stack)
+             .environment(\.managedObjectContext, context)
         }
     }
 }
